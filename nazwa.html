@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimsum Gen Z - Dimsum Premium, Halal & Trendy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coral: '#FF5E62',
+                        'coral-hover': '#e04b4f',
+                        warmYellow: '#FFD97D',
+                        softCream: '#FFF9F2',
+                        darkSlate: '#2B2D42',
+                        accentOrange: '#FF9966'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFF9F2;
+            color: #2B2D42;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+        .bg-coral-gradient {
+            background: linear-gradient(135deg, #FF5E62 0%, #FF9966 100%);
+        }
+        .bg-warm-gradient {
+            background: linear-gradient(135deg, #FFF9F2 0%, #FFEFC8 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #FF5E62 0%, #FF9966 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .custom-shadow {
+            box-shadow: 0 10px 30px -5px rgba(255, 94, 98, 0.15);
+        }
+        .card-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-coral selection:text-white">
+
+    <!-- NAVBAR STICKY -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-2xl bg-coral-gradient flex items-center justify-center text-white shadow-lg transform group-hover:rotate-6 transition-all duration-300">
+                        <i class="fa-solid fa-cloud-meatball text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold font-heading text-darkSlate tracking-tight block">Dimsum <span class="text-coral">Gen Z</span></span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-amber-5xl text-amber-600 block -mt-1">Halal & Bite-Sized</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-darkSlate">
+                    <a href="#beranda" class="hover:text-coral transition-colors py-2">Beranda</a>
+                    <a href="#katalog" class="hover:text-coral transition-colors py-2">Katalog Menu</a>
+                    <a href="#sauce-section" class="hover:text-coral transition-colors py-2">Chili Oil & Saus</a>
+                    <a href="#tentang" class="hover:text-coral transition-colors py-2">Tentang Kami</a>
+                    <a href="#testimoni" class="hover:text-coral transition-colors py-2">Testimoni</a>
+                    <a href="#kontak" class="hover:text-coral transition-colors py-2">Lokasi</a>
+                </nav>
+
+                <!-- Right Actions (Cart & Mobile Menu Button) -->
+                <div class="flex items-center gap-4">
+                    <!-- Cart Button -->
+                    <button id="open-cart-btn" class="relative p-3 rounded-full bg-softCream text-darkSlate hover:bg-coral hover:text-white transition-all duration-300 shadow-sm group">
+                        <i class="fa-solid fa-basket-shopping text-xl"></i>
+                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-coral text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white group-hover:bg-darkSlate transition-colors">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Trigger -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-darkSlate hover:bg-gray-100">
+                        <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 pt-2 pb-6 space-y-3">
+            <a href="#beranda" class="mobile-link block px-3 py-2 rounded-md font-medium text-darkSlate hover:bg-softCream hover:text-coral">Beranda</a>
+            <a href="#katalog" class="mobile-link block px-3 py-2 rounded-md font-medium text-darkSlate hover:bg-softCream hover:text-coral">Katalog Menu</a>
+            <a href="#sauce-section" class="mobile-link block px-3 py-2 rounded-md font-medium text-darkSlate hover:bg-softCream hover:text-coral">Chili Oil & Saus</a>
+            <a href="#tentang" class="mobile-link block px-3 py-2 rounded-md font-medium text-darkSlate hover:bg-softCream hover:text-coral">Tentang Kami</a>
+            <a href="#testimoni" class="mobile-link block px-3 py-2 rounded-md font-medium text-darkSlate hover:bg-softCream hover:text-coral">Testimoni</a>
+            <a href="#kontak" class="mobile-link block px-3 py-2 rounded-md font-medium text-darkSlate hover:bg-softCream hover:text-coral">Lokasi & Kontak</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="beranda" class="relative overflow-hidden py-12 lg:py-20 bg-warm-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left Column Text Content -->
+                <div class="space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-coral/20 text-coral font-semibold text-sm shadow-sm backdrop-blur-sm">
+                        <i class="fa-solid fa-fire text-amber-500"></i>
+                        <span>Dimsum Viral Favorit Gen Z!</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-darkSlate font-heading leading-tight">
+                        Dimsum Lembut, Kulit Tipis, <span class="text-gradient">Isian Tebal!</span>
+                    </h1>
+                    
+                    <p class="text-gray-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0">
+                        Racikan daging ayam fresh pilihan dengan siraman Chili Oil super gurih nagih. Solusi jajan enak, kekinian, halal, dan tetep ramah dikantong!
+                    </p>
+
+                    <!-- Feature Badges -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-3 py-2">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-xs font-bold text-darkSlate shadow-sm border border-gray-100">
+                            <i class="fa-solid fa-circle-check text-green-5xl text-green-500"></i> 100% Halal MUI
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-xs font-bold text-darkSlate shadow-sm border border-gray-100">
+                            <i class="fa-solid fa-drumstick-bite text-coral"></i> Fresh Ayam Choice
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-xs font-bold text-darkSlate shadow-sm border border-gray-100">
+                            <i class="fa-solid fa-pepper-hot text-red-500"></i> Chili Oil Rahasia
+                        </span>
+                    </div>
+
+                    <!-- Call To Action Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#katalog" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-coral-gradient text-white font-bold text-center shadow-lg hover:shadow-coral/40 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-utensils"></i> Lihat Menu
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Dimsum%20Gen%20Z,%20saya%20mau%20tanya%20stok%20dimsum" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-darkSlate font-bold text-center border-2 border-gray-200 hover:border-coral hover:text-coral transition-all duration-300 flex items-center justify-center gap-3 shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-green-500 text-xl"></i> Tanya CS WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column Visual Hero -->
+                <div class="relative flex justify-center">
+                    <div class="relative w-full max-w-md lg:max-w-none">
+                        <!-- Decorative Circle Background -->
+                        <div class="absolute inset-0 bg-coral/10 rounded-full blur-3xl transform scale-90"></div>
+                        
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                            <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=800&auto=format&fit=crop" alt="Dimsum Gen Z Banner" class="w-full h-[380px] sm:h-[450px] object-cover hover:scale-105 transition-transform duration-700">
+                            
+                            <!-- Floating Tag Offer -->
+                            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/95 backdrop-blur-md shadow-lg border border-gray-100 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-warmYellow flex items-center justify-center text-darkSlate font-bold">
+                                        <i class="fa-solid fa-percent text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-darkSlate">Promo Beli 2 Gratis 1 Chili Oil</h4>
+                                        <p class="text-xs text-gray-500">Berlaku untuk pembelian via website hari ini!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- KATALOG DIMSUM INTERAKTIF -->
+    <section id="katalog" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-darkSlate font-heading">
+                Menu Favorit <span class="text-gradient">Gen Z</span>
+            </h2>
+            <p class="mt-3 text-gray-600">Pilih varian dimsum favoritmu! Mulai dari yang dikukus melted, digoreng renyah, sampai yang frozen siap saji di rumah.</p>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-10">
+            <!-- Filter Categories Tabs -->
+            <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar">
+                <button class="filter-btn active px-5 py-2.5 rounded-full font-semibold text-sm whitespace-nowrap transition-all duration-300 bg-coral text-white shadow-md shadow-coral/30" data-category="all">
+                    Semua Menu
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-full font-semibold text-sm whitespace-nowrap transition-all duration-300 bg-white text-darkSlate hover:bg-softCream border border-gray-200" data-category="kukus">
+                    <i class="fa-solid fa-steam text-xs mr-1"></i> Kukus
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-full font-semibold text-sm whitespace-nowrap transition-all duration-300 bg-white text-darkSlate hover:bg-softCream border border-gray-200" data-category="goreng">
+                    <i class="fa-solid fa-fire-burner text-xs mr-1"></i> Goreng
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-full font-semibold text-sm whitespace-nowrap transition-all duration-300 bg-white text-darkSlate hover:bg-softCream border border-gray-200" data-category="paket">
+                    <i class="fa-solid fa-boxes-packing text-xs mr-1"></i> Paket Party
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-full font-semibold text-sm whitespace-nowrap transition-all duration-300 bg-white text-darkSlate hover:bg-softCream border border-gray-200" data-category="frozen">
+                    <i class="fa-solid fa-snowflake text-xs mr-1"></i> Frozen
+                </button>
+            </div>
+
+            <!-- Live Search Bar -->
+            <div class="relative w-full md:w-72">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="search-input" placeholder="Cari menu dimsum..." class="w-full pl-11 pr-4 py-2.5 rounded-full border border-gray-200 bg-white focus:outline-none focus:border-coral focus:ring-2 focus:ring-coral/20 text-sm transition-all">
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Product cards will be dynamically injected here via JavaScript -->
+        </div>
+
+        <!-- Empty Search State -->
+        <div id="empty-state" class="hidden text-center py-16">
+            <div class="w-20 h-20 mx-auto rounded-full bg-red-100 flex items-center justify-center text-coral text-3xl mb-4">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h3 class="text-xl font-bold text-darkSlate">Menu Tidak Ditemukan</h3>
+            <p class="text-gray-500 mt-1">Coba kata kunci pencarian lain atau pilih kategori lain.</p>
+        </div>
+    </section>
+
+    <!-- SECTION CHILI OIL & SAUS SPESIAL -->
+    <section id="sauce-section" class="py-16 bg-gradient-to-br from-red-900 to-darkSlate text-white relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-coral/20 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-warmYellow font-bold uppercase tracking-wider text-xs px-3 py-1 bg-white/10 rounded-full">Secret Recipe</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-heading mt-4 leading-tight">
+                        Chili Oil & Saus Mentai Bakar Rahasia Dimsum Gen Z!
+                    </h2>
+                    <p class="mt-4 text-gray-300 leading-relaxed">
+                        Kunci kelezatan sejati ada di sausnya! Kami mengolah Chili Oil racikan sendiri menggunakan rempah alami khas Indonesia & Sichuan, minyak wijen murni, dan cabai kering pilihan. Gurih, pedas, dan memiliki aroma asap yang memikat!
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+                            <i class="fa-solid fa-pepper-hot text-coral text-2xl mb-2"></i>
+                            <h4 class="font-bold text-lg">Chili Oil Pedas Gurih</h4>
+                            <p class="text-xs text-gray-300 mt-1">Level pedas yang pas tanpa menghilangkan rasa gurih alami dimsum.</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+                            <i class="fa-solid fa-fire text-amber-400 text-2xl mb-2"></i>
+                            <h4 class="font-bold text-lg">Saus Mentai Torch</h4>
+                            <p class="text-xs text-gray-300 mt-1">Creamy, smoky, gurih, dibakar sempurna dengan torch khusus.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="relative w-full max-w-md bg-white/5 border border-white/10 p-6 rounded-3xl backdrop-blur-md text-center">
+                        <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?q=80&w=600&auto=format&fit=crop" alt="Chili Oil Special" class="w-full h-64 object-cover rounded-2xl shadow-xl mb-4">
+                        <h3 class="text-xl font-bold font-heading">Chili Oil Premium Jar (150ml)</h3>
+                        <p class="text-sm text-gray-300 mt-1">Bawa pulang kelezatan Chili Oil khas kami untuk pelengkap makan di rumah.</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <span class="text-2xl font-extrabold text-warmYellow">Rp 22.000</span>
+                            <button onclick="addToCart(7)" class="px-5 py-2.5 rounded-xl bg-coral hover:bg-coral-hover font-bold text-sm transition-all duration-300 shadow-lg">
+                                + Tambah ke Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="tentang" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <div class="grid grid-cols-2 gap-4">
+                    <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?q=80&w=500&auto=format&fit=crop" alt="Proses Dimsum 1" class="rounded-3xl shadow-lg w-full h-60 object-cover">
+                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=500&auto=format&fit=crop" alt="Proses Dimsum 2" class="rounded-3xl shadow-lg w-full h-60 object-cover mt-8">
+                </div>
+                <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white px-6 py-4 rounded-2xl shadow-xl text-center border border-gray-100">
+                    <span class="block text-2xl font-extrabold text-coral font-heading">10.000+</span>
+                    <span class="text-xs text-gray-500 font-medium">Porsi Terjual Setiap Bulan</span>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <span class="text-coral font-bold uppercase tracking-widest text-xs">Tentang Kami</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-darkSlate font-heading leading-tight">
+                    Lahir dari Kecintaan Anak Muda pada Kuliner Otentik!
+                </h2>
+                <p class="text-gray-600 leading-relaxed">
+                    <strong>Dimsum Gen Z</strong> didirikan pada tahun 2023 dengan misi menyajikan dimsum berkualitas restoran bintang lima dengan harga yang terjangkau untuk anak muda, mahasiswa, dan keluarga.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Kami menggunakan 100% filet dada dan paha ayam segar pilihan tanpa bahan pengawet sintetik. Kulit dimsum kami tipis dan elastis, membungkus isian daging yang padat dan juicy.
+                </p>
+
+                <div class="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+                    <div>
+                        <h4 class="font-bold text-darkSlate text-lg">100%</h4>
+                        <p class="text-xs text-gray-500">Halal & Hygienic</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-darkSlate text-lg">Fresh</h4>
+                        <p class="text-xs text-gray-500">Dibuat Setiap Hari</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-darkSlate text-lg">Juicy</h4>
+                        <p class="text-xs text-gray-500">Isian Daging Tebal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL SECTION -->
+    <section id="testimoni" class="py-16 bg-softCream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl font-extrabold text-darkSlate font-heading">Apa Kata <span class="text-gradient">Gen Z</span>?</h2>
+                <p class="text-gray-600 mt-2">Testimoni jujur dari pelanggan setia kami.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Testi 1 -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 text-sm mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm italic">"Chili oil-nya parah sih enaknya! Gurih nagih gitu, dimsum mentai bakarnya juga smoky banget. Wajib coba guys!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6 pt-4 border-t border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" alt="User" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-bold text-sm text-darkSlate">Amanda Rizky</h4>
+                            <span class="text-xs text-gray-400">Mahasiswi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 2 -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 text-sm mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm italic">"Kulit dimsumnya tipis banget beda ama toko sebelah yang kebanyakan tepung. Di sini berasa banget daging ayamnya!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6 pt-4 border-t border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=150&auto=format&fit=crop" alt="User" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-bold text-sm text-darkSlate">Dimas Pratama</h4>
+                            <span class="text-xs text-gray-400">Content Creator</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 text-sm mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm italic">"Pesan Paket Party buat acara kumpul komite kampus. Respon admin wa cepat, dikirim selagi hangat!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6 pt-4 border-t border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=150&auto=format&fit=crop" alt="User" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-bold text-sm text-darkSlate">Siti Nurbaya</h4>
+                            <span class="text-xs text-gray-400">Foodie Gen Z</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & LOCATION SECTION -->
+    <section id="kontak" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-gray-100">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <span class="text-coral font-bold uppercase tracking-widest text-xs">Outlet Utama</span>
+                    <h2 class="text-3xl font-extrabold text-darkSlate font-heading mt-2">Mampir & Rasakan Sensasinya Direct!</h2>
+                    <p class="text-gray-600 mt-3 text-sm leading-relaxed">
+                        Kunjungi kedai kami untuk menikmati dimsum kukus hangat langsung dari klakson bambu.
+                    </p>
+
+                    <div class="space-y-4 mt-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-red-50 text-coral flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-darkSlate">Alamat Kedai</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">Jl. Bakaran Batu No. 88, Lubuk Pakam</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-darkSlate">Jam Operasional</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">Everyday: 10.00 - 22.00 WIB</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-darkSlate">WhatsApp / Delivery Order</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">+62 813-6070-1614</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Embedded Google Maps Fake UI / Visual Placeholder -->
+                <div class="rounded-2xl overflow-hidden h-72 border border-gray-200 relative bg-gray-100 flex items-center justify-center">
+                    <iframe title="Map Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.273618456223!2d106.8488001!3d-6.2276003!2m3!1f0!2f0!3f0!2m3!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTMnMzkuNCJTIDEwNsKwNTAnNTUuNyJF!5e0!3m2!1sid!2sid!4v1620000000000!5m2!1sid!2sid" class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-darkSlate text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-gray-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-coral-gradient flex items-center justify-center text-white font-bold">
+                        <i class="fa-solid fa-cloud-meatball"></i>
+                    </div>
+                    <span class="text-xl font-bold font-heading">Dimsum <span class="text-coral">Gen Z</span></span>
+                </div>
+
+                <div class="flex items-center gap-6 text-xl">
+                    <a href="#" class="text-gray-400 hover:text-coral transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-coral transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-coral transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 text-center sm:text-left gap-4">
+                <p>&copy; 2026 Dimsum Gen Z. All Rights Reserved. Fresh, Halal & Trendy.</p>
+                <p>Dibuat dengan <i class="fa-solid fa-heart text-coral"></i> khusus pecinta kuliner.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL PRODUCT DETAIL POPUP -->
+    <div id="product-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transform scale-95 transition-all duration-300 relative" id="modal-content">
+            <!-- Close Button -->
+            <button id="close-modal-btn" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="relative h-64">
+                <img id="modal-img" src="" alt="Menu" class="w-full h-full object-cover">
+                <div class="absolute bottom-3 left-4">
+                    <span id="modal-tag" class="px-3 py-1 rounded-full text-xs font-bold bg-coral text-white shadow-sm"></span>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-4">
+                <div>
+                    <h3 id="modal-title" class="text-2xl font-bold text-darkSlate font-heading"></h3>
+                    <p id="modal-price" class="text-xl font-extrabold text-coral mt-1"></p>
+                </div>
+
+                <p id="modal-desc" class="text-gray-600 text-sm leading-relaxed"></p>
+
+                <div class="border-t border-gray-100 pt-3">
+                    <h4 class="font-bold text-xs uppercase text-gray-400 mb-2">Komposisi Utama:</h4>
+                    <p id="modal-ingredients" class="text-xs text-darkSlate font-medium"></p>
+                </div>
+
+                <!-- Custom Topping Options -->
+                <div class="border-t border-gray-100 pt-3">
+                    <h4 class="font-bold text-xs uppercase text-gray-400 mb-2">Pilihan Tambahan Extra:</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center justify-between text-xs p-2 rounded-lg bg-softCream cursor-pointer">
+                            <span class="flex items-center gap-2"><input type="checkbox" id="extra-chili" class="accent-coral"> Extra Chili Oil Jar (+Rp 5.000)</span>
+                            <span class="font-bold text-coral">+5k</span>
+                        </label>
+                        <label class="flex items-center justify-between text-xs p-2 rounded-lg bg-softCream cursor-pointer">
+                            <span class="flex items-center gap-2"><input type="checkbox" id="extra-mentai" class="accent-coral"> Extra Flame Saus Mentai (+Rp 6.000)</span>
+                            <span class="font-bold text-coral">+6k</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button id="modal-add-btn" class="w-full py-3.5 rounded-2xl bg-coral-gradient text-white font-bold text-sm shadow-lg hover:shadow-coral/40 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-plus"></i> Tambahkan ke Keranjang
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART DRAWER (SLIDE FROM RIGHT) -->
+    <div id="cart-drawer-overlay" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    
+    <div id="cart-drawer" class="fixed top-0 right-0 z-50 w-full sm:w-[420px] h-full bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-softCream">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-basket-shopping text-coral text-xl"></i>
+                <h3 class="font-bold text-lg text-darkSlate font-heading">Keranjang Belanja</h3>
+            </div>
+            <button id="close-cart-btn" class="p-2 text-gray-400 hover:text-darkSlate">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items Container -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-4">
+            <!-- Items injected by JS -->
+        </div>
+
+        <!-- Checkout Form & Summary Footer -->
+        <div class="p-5 border-t border-gray-100 bg-gray-50 space-y-3">
+            <div class="space-y-2">
+                <input type="text" id="cust-name" placeholder="Nama Pemesan *" class="w-full px-3 py-2 text-xs rounded-xl border border-gray-200 focus:outline-none focus:border-coral">
+                <input type="text" id="cust-address" placeholder="Alamat Pengiriman Lengkap *" class="w-full px-3 py-2 text-xs rounded-xl border border-gray-200 focus:outline-none focus:border-coral">
+                <select id="cust-delivery" class="w-full px-3 py-2 text-xs rounded-xl border border-gray-200 focus:outline-none focus:border-coral text-gray-600">
+                    <option value="Takeaway / Ambil Sendiri">Takeaway / Ambil Sendiri</option>
+                    <option value="Delivery GoSend / GrabExpress">Delivery (GoSend / GrabExpress)</option>
+                </select>
+            </div>
+
+            <div class="border-t border-gray-200 pt-3 flex items-center justify-between">
+                <span class="text-sm font-bold text-darkSlate">Total Pembayaran:</span>
+                <span id="cart-total-price" class="text-xl font-extrabold text-coral font-heading">Rp 0</span>
+            </div>
+
+            <button id="checkout-wa-btn" class="w-full py-3.5 rounded-2xl bg-green-500 hover:bg-green-600 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Checkout Via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // DATA PRODUK DIMSUM GEN Z
+        const products = [
+            {
+                id: 1,
+                name: "Dimsum Ayam Mozzarella",
+                category: "kukus",
+                price: 20000,
+                tag: "Best Seller",
+                spicy: "Sedang",
+                image: "https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?q=80&w=500&auto=format&fit=crop",
+                description: "Dimsum olahan ayam juicy dengan isian keju mozzarella melted lumer melimpah di dalam. Disajikan hangat 4 pcs.",
+                ingredients: "Dada Ayam Fresh, Keju Mozzarella Premium, Kulit Dimsum Tipis, Bumbu Rempah Special."
+            },
+            {
+                id: 2,
+                name: "Dimsum Udang Rambutan",
+                category: "goreng",
+                price: 22000,
+                tag: "Favorit Gen Z",
+                spicy: "Tidak Pedas",
+                image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=500&auto=format&fit=crop",
+                description: "Bola udang isi ayam dibalut irisan kulit pangsit renyah kriuk seperti buah rambutan. Porsi 4 pcs.",
+                ingredients: "Udang Segar, Daging Ayam Cincang, Kulit Pangsit Extra Crispy."
+            },
+            {
+                id: 3,
+                name: "Dimsum Mentai Bakar",
+                category: "kukus",
+                price: 23000,
+                tag: "Super Pedas",
+                spicy: "Pedas Gurih",
+                image: "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=500&auto=format&fit=crop",
+                description: "Dimsum ayam kukus disiram saus mentai gurih mayo lalu di-torch sampai wangi smoky memikat. Porsi 4 pcs.",
+                ingredients: "Ayam Filet, Tobiko (Telur Ikan), Mayo Mentai Special, Tobiko Torch."
+            },
+            {
+                id: 4,
+                name: "Dimsum Nori Seaweed",
+                category: "kukus",
+                price: 19000,
+                tag: "Populer",
+                spicy: "Tidak Pedas",
+                image: "https://images.unsplash.com/photo-1525755662778-989d0524087e?q=80&w=500&auto=format&fit=crop",
+                description: "Dimsum olahan daging ayam padat dibalut rumput laut (nori) jepang yang gurih alami. Porsi 4 pcs.",
+                ingredients: "Ayam Filet, Nori Premium Import, Minyak Wijen."
+            },
+            {
+                id: 5,
+                name: "Hakau Udang Transparan",
+                category: "kukus",
+                price: 24000,
+                tag: "Premium",
+                spicy: "Tidak Pedas",
+                image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?q=80&w=500&auto=format&fit=crop",
+                description: "Hakau otentik kulit bening transparan elastis dengan isian udang utuh renyah dan manis manis gurih. Porsi 4 pcs.",
+                ingredients: "Udang Utuh Segar, Tepung Wheat Starch Benih, Minyak Wijen."
+            },
+            {
+                id: 6,
+                name: "Siomay Ayam Original",
+                category: "kukus",
+                price: 18000,
+                tag: "Classic",
+                spicy: "Tidak Pedas",
+                image: "https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?q=80&w=500&auto=format&fit=crop",
+                description: "Siomay dimsum ayam original lembut gurih bertabur parutan wortel segar di atasnya. Porsi 4 pcs.",
+                ingredients: "Olahan Ayam Cincang, Parutan Wortel Fresh, Bawang Putih."
+            },
+            {
+                id: 7,
+                name: "Chili Oil Jar Special (150ml)",
+                category: "frozen",
+                price: 22000,
+                tag: "Wajib Punya",
+                spicy: "Sangat Pedas",
+                image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?q=80&w=500&auto=format&fit=crop",
+                description: "Jar Chili oil rahasia buatan sendiri. Minyak cabai gurih dengan tekstur cincangan cabai dan udang rebon halus.",
+                ingredients: "Cabai Kering Sichuan, Minyak Wijen, Bawang Putih, Udang Rebon."
+            },
+            {
+                id: 8,
+                name: "Paket Party 20 Pcs Mix",
+                category: "paket",
+                price: 85000,
+                tag: "Hemat Banger",
+                spicy: "Bisa Request",
+                image: "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=500&auto=format&fit=crop",
+                description: "Paket komplit untuk nongkrong rame-rame! Isi 20 pcs campur (Ayam, Nori, Mozzarella, Rambutan) + 2 Free Chili Oil.",
+                ingredients: "Mix All Varian Dimsum Gen Z."
+            }
+        ];
+
+        // CART STATE
+        let cart = [];
+        let activeCategory = "all";
+        let searchQuery = "";
+        let selectedProductForModal = null;
+
+        // DOM ELEMENTS
+        const productGrid = document.getElementById('product-grid');
+        const emptyState = document.getElementById('empty-state');
+        const searchInput = document.getElementById('search-input');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cartBadge = document.getElementById('cart-badge');
+
+        // MODAL ELEMENTS
+        const productModal = document.getElementById('product-modal');
+        const modalContent = document.getElementById('modal-content');
+        const modalImg = document.getElementById('modal-img');
+        const modalTag = document.getElementById('modal-tag');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPrice = document.getElementById('modal-price');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalIngredients = document.getElementById('modal-ingredients');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalAddBtn = document.getElementById('modal-add-btn');
+
+        // DRAWER CART ELEMENTS
+        const openCartBtn = document.getElementById('open-cart-btn');
+        const closeCartBtn = document.getElementById('close-cart-btn');
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartDrawerOverlay = document.getElementById('cart-drawer-overlay');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartTotalPrice = document.getElementById('cart-total-price');
+        const checkoutWaBtn = document.getElementById('checkout-wa-btn');
+
+        // MOBILE MENU
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // INITIALIZE APP
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            setupEventListeners();
+        });
+
+        // RENDER PRODUCTS GRID
+        function renderProducts() {
+            const filtered = products.filter(p => {
+                const matchCategory = activeCategory === 'all' || p.category === activeCategory;
+                const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                    p.description.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchCategory && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                productGrid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            productGrid.innerHTML = filtered.map(product => `
+                <div class="bg-white rounded-3xl overflow-hidden card-shadow hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between border border-gray-100 group">
+                    <div class="relative overflow-hidden cursor-pointer" onclick="openModal(${product.id})">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase bg-coral text-white shadow-md">
+                            ${product.tag}
+                        </span>
+                    </div>
+
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-1">
+                                <h3 class="font-bold text-darkSlate text-base font-heading cursor-pointer hover:text-coral transition-colors" onclick="openModal(${product.id})">${product.name}</h3>
+                            </div>
+                            <p class="text-xs text-gray-500 line-clamp-2 mt-1 leading-relaxed">${product.description}</p>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-gray-400 block">Harga</span>
+                                <span class="text-lg font-extrabold text-coral font-heading">Rp ${product.price.toLocaleString('id-ID')}</span>
+                            </div>
+
+                            <div class="flex gap-2">
+                                <button onclick="openModal(${product.id})" class="p-2.5 rounded-xl bg-softCream text-darkSlate hover:bg-gray-200 transition-colors text-xs font-semibold" title="Detail Menu">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                                <button onclick="addToCart(${product.id})" class="px-3 py-2.5 rounded-xl bg-coral hover:bg-coral-hover text-white transition-colors text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                                    <i class="fa-solid fa-plus"></i> Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // SETUP EVENT LISTENERS
+        function setupEventListeners() {
+            // Filter categories
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-coral', 'text-white', 'shadow-md', 'shadow-coral/30');
+                        b.classList.add('bg-white', 'text-darkSlate');
+                    });
+                    btn.classList.remove('bg-white', 'text-darkSlate');
+                    btn.classList.add('bg-coral', 'text-white', 'shadow-md', 'shadow-coral/30');
+
+                    activeCategory = btn.dataset.category;
+                    renderProducts();
+                });
+            });
+
+            // Live Search Input
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value;
+                renderProducts();
+            });
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // Modal Controls
+            closeModalBtn.addEventListener('click', closeModal);
+            productModal.addEventListener('click', (e) => {
+                if (e.target === productModal) closeModal();
+            });
+
+            // Cart Drawer Controls
+            openCartBtn.addEventListener('click', openCartDrawer);
+            closeCartBtn.addEventListener('click', closeCartDrawer);
+            cartDrawerOverlay.addEventListener('click', closeCartDrawer);
+
+            // Modal Add to Cart
+            modalAddBtn.addEventListener('click', () => {
+                if (!selectedProductForModal) return;
+                
+                let extraPrice = 0;
+                let extraItems = [];
+                if (document.getElementById('extra-chili').checked) {
+                    extraPrice += 5000;
+                    extraItems.push("Extra Chili Oil");
+                }
+                if (document.getElementById('extra-mentai').checked) {
+                    extraPrice += 6000;
+                    extraItems.push("Extra Saus Mentai");
+                }
+
+                addToCartCustom(selectedProductForModal, extraPrice, extraItems);
+                closeModal();
+            });
+
+            // Checkout WhatsApp
+            checkoutWaBtn.addEventListener('click', processCheckoutWA);
+        }
+
+        // OPEN MODAL PRODUCT DETAIL
+        function openModal(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            selectedProductForModal = product;
+            modalImg.src = product.image;
+            modalTag.textContent = product.tag;
+            modalTitle.textContent = product.name;
+            modalPrice.textContent = `Rp ${product.price.toLocaleString('id-ID')}`;
+            modalDesc.textContent = product.description;
+            modalIngredients.textContent = product.ingredients;
+
+            // Reset checkboxes
+            document.getElementById('extra-chili').checked = false;
+            document.getElementById('extra-mentai').checked = false;
+
+            productModal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            productModal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+        }
+
+        // CART FUNCTIONS
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+            addToCartCustom(product, 0, []);
+        }
+
+        function addToCartCustom(product, extraPrice, extraItems) {
+            const existingIndex = cart.findIndex(item => item.id === product.id && JSON.stringify(item.extraItems) === JSON.stringify(extraItems));
+
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price + extraPrice,
+                    extraItems: extraItems,
+                    qty: 1,
+                    image: product.image
+                });
+            }
+
+            updateCartUI();
+            openCartDrawer();
+        }
+
+        function updateCartQty(index, change) {
+            cart[index].qty += change;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Count total items
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            cartBadge.textContent = totalItems;
+
+            // Total price
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            cartTotalPrice.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+
+            // Render Cart Items
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="text-center py-12 text-gray-400">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-gray-300"></i>
+                        <p class="text-sm">Keranjang Anda masih kosong.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            cartItemsContainer.innerHTML = cart.map((item, index) => `
+                <div class="flex items-center gap-3 bg-softCream p-3 rounded-2xl border border-gray-100">
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-xs text-darkSlate">${item.name}</h4>
+                        ${item.extraItems.length > 0 ? `<p class="text-[10px] text-coral font-medium">+ ${item.extraItems.join(', ')}</p>` : ''}
+                        <span class="text-xs font-extrabold text-coral mt-1 block">Rp ${item.price.toLocaleString('id-ID')}</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white px-2 py-1 rounded-xl border border-gray-200">
+                        <button onclick="updateCartQty(${index}, -1)" class="text-xs font-bold text-gray-500 hover:text-coral w-5 text-center">-</button>
+                        <span class="text-xs font-bold text-darkSlate w-4 text-center">${item.qty}</span>
+                        <button onclick="updateCartQty(${index}, 1)" class="text-xs font-bold text-gray-500 hover:text-coral w-5 text-center">+</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openCartDrawer() {
+            cartDrawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            cartDrawer.classList.remove('translate-x-full');
+        }
+
+        function closeCartDrawer() {
+            cartDrawerOverlay.classList.add('opacity-0', 'pointer-events-none');
+            cartDrawer.classList.add('translate-x-full');
+        }
+
+        // CHECKOUT VIA WHATSAPP AUTOMATION
+        function processCheckoutWA() {
+            if (cart.length === 0) {
+                alert('Keranjang belanja Anda masih kosong! Silakan pilih dimsum terlebih dahulu.');
+                return;
+            }
+
+            const name = document.getElementById('cust-name').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+            const delivery = document.getElementById('cust-delivery').value;
+
+            if (!name || !address) {
+                alert('Mohon isi Nama Lengkap dan Alamat Pengiriman untuk kelancaran pemesanan.');
+                return;
+            }
+
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            // Format WhatsApp Text
+            let waMessage = `*HALO DIMSUM GEN Z, SAYA MAU PESAN!* 🥟🔥\n\n`;
+            waMessage += `*Data Pemesan:*\n`;
+            waMessage += `• Nama: ${name}\n`;
+            waMessage += `• Alamat: ${address}\n`;
+            waMessage += `• Metode: ${delivery}\n\n`;
+            waMessage += `*Rincian Pesanan:*\n`;
+
+            cart.forEach((item, idx) => {
+                const extras = item.extraItems.length > 0 ? ` (${item.extraItems.join(', ')})` : '';
+                waMessage += `${idx + 1}. ${item.name}${extras} - ${item.qty}x @ Rp ${item.price.toLocaleString('id-ID')}\n`;
+            });
+
+            waMessage += `\n*TOTAL BAYAR: Rp ${totalPrice.toLocaleString('id-ID')}*\n\n`;
+            waMessage += `Mohon segera diproses dan informasikan nomor rekening/QRIS pembayarannya ya min. Terima kasih!`;
+
+            // Admin Phone Number (Indonesian code 62)
+            const adminWA = "6281234567890";
+            const encodedUrl = `https://wa.me/${adminWA}?text=${encodeURIComponent(waMessage)}`;
+
+            window.open(encodedUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
